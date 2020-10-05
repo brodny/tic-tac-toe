@@ -10,7 +10,11 @@ export class BoardComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   public status: string = 'Next player: X';
 
-  constructor() { }
+  public squares: Array<string>;
+
+  constructor() {
+    this.squares = Array(9).fill(null);
+  }
 
   ngOnInit(): void {
   }

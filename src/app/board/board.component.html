@@ -1,18 +1,22 @@
+<ng-template #squareTemplate let-value="value">
+    <app-square value={{this.squares[value]}}></app-square>
+</ng-template>
+
 <div>
     <div className="status">{{this.status}}</div>
     <div className="board-row">
-        <app-square></app-square>
-        <app-square></app-square>
-        <app-square></app-square>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 0 }"></ng-container>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 1 }"></ng-container>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 2 }"></ng-container>
     </div>
     <div className="board-row">
-        <app-square></app-square>
-        <app-square></app-square>
-        <app-square></app-square>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 3 }"></ng-container>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 4 }"></ng-container>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 5 }"></ng-container>
     </div>
     <div className="board-row">
-        <app-square></app-square>
-        <app-square></app-square>
-        <app-square></app-square>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 6 }"></ng-container>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 7 }"></ng-container>
+        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 8 }"></ng-container>
     </div>
   </div>
