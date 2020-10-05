@@ -15,7 +15,11 @@ export class SquareComponent implements OnInit {
   }
 
   public buttonClicked(): void {
-    alert('click');
+    this.setValue('X');
+  }
+
+  public setValue(newValue: string): void {
+    this.value = newValue;
   }
 
 }
