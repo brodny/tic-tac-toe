@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
+  // tslint:disable-next-line: no-inferrable-types
+  public status: string = 'Next player: X';
+
   constructor() { }
 
   ngOnInit(): void {
