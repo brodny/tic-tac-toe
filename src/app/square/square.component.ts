@@ -14,4 +14,8 @@ export class SquareComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public buttonClicked(): void {
+    alert('click');
+  }
+
 }
