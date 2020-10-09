@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
-  // tslint:disable-next-line: no-inferrable-types
-  public status: string = 'Next player: X';
-
   public squares: Array<string>;
+
+  // tslint:disable-next-line: no-inferrable-types
+  public xIsNext: boolean = true;
 
   constructor() {
     this.squares = Array(9).fill(null);
@@ -21,8 +21,10 @@ export class BoardComponent implements OnInit {
 
   public handleClick(square: number): void {
     const squares = this.squares.slice();
-    squares[square] = 'X';
+    squares[square] = this.xIsNext ? 'X' : 'O';
+
     this.squares = squares;
+    this.xIsNext = !this.xIsNext;
   }
 
 }

@@ -3,7 +3,7 @@
 </ng-template>
 
 <div>
-    <div className="status">{{this.status}}</div>
+    <div className="status">Next player: {{this.xIsNext ? 'X' : 'O'}}</div>
     <div className="board-row">
         <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 0 }"></ng-container>
         <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 1 }"></ng-container>
