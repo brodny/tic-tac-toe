@@ -19,4 +19,10 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public handleClick(square: number): void {
+    const squares = this.squares.slice();
+    squares[square] = 'X';
+    this.squares = squares;
+  }
+
 }

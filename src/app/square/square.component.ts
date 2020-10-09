@@ -14,10 +14,6 @@ export class SquareComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public buttonClicked(): void {
-    this.setValue('X');
-  }
-
   public setValue(newValue: string): void {
     this.value = newValue;
   }
