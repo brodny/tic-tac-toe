@@ -25,6 +25,11 @@ export class BoardComponent implements OnInit {
   public handleClick(square: number): void {
     const squares = this.squares.slice();
 
+    const winner = this.calculateWinner(this.squares);
+    if (winner || this.squares[square]) {
+      return;
+    }
+
     squares[square] = this.xIsNext ? 'X' : 'O';
 
     this.squares = squares;
