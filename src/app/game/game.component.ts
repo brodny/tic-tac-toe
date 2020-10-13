@@ -35,7 +35,7 @@ export class GameComponent implements OnInit {
 
     squares[square].player = this.xIsNext ? 'X' : 'O';
 
-    this.history = this.history.concat([squares]);
+    this.history = history.concat([squares]);
     this.xIsNext = !this.xIsNext;
     this.stepNumber = history.length;
 
