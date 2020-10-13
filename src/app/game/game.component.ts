@@ -14,6 +14,9 @@ export class GameComponent implements OnInit {
 
   public status: string;
 
+  // tslint:disable-next-line: no-inferrable-types
+  public stepNumber: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,7 +24,8 @@ export class GameComponent implements OnInit {
   }
 
   public handleClick(square: number): void {
-    const current: Array<string> = this.history[this.history.length - 1];
+    const history: Array<Array<string>> = this.history.slice(0, this.stepNumber + 1);
+    const current: Array<string> = history[this.stepNumber];
     const squares: Array<string> = current.slice();
 
     if (this.calculateWinner(squares) || squares[square]) {
@@ -32,12 +36,16 @@ export class GameComponent implements OnInit {
 
     this.history = this.history.concat([squares]);
     this.xIsNext = !this.xIsNext;
+    this.stepNumber = history.length;
 
     this.recalculateStatus();
   }
 
-  public jumpTo(move: number): void {
-    alert(`Jumping to move ${move}`);
+  public jumpTo(step: number): void {
+    this.stepNumber = step;
+    this.xIsNext = (step % 2) === 0;
+
+    this.recalculateStatus();
   }
 
   private calculateWinner(squares: Array<string>): string {
@@ -63,7 +71,7 @@ export class GameComponent implements OnInit {
   }
 
   private recalculateStatus(): void {
-    const winner = this.calculateWinner(this.history[this.history.length - 1]);
+    const winner = this.calculateWinner(this.history[this.stepNumber]);
     let status: string;
     if (winner) {
       status = `Winner: ${winner}`;

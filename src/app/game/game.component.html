@@ -1,7 +1,7 @@
 <div class="game">
     <div class="game-board">
         <app-board
-            [squares]="this.history[this.history.length - 1]"
+            [squares]="this.history[this.stepNumber]"
             (squareClicked)="this.handleClick($event)"
         >
         </app-board>
