@@ -86,12 +86,7 @@ export class GameComponent implements OnInit {
   }
 
   private clone(current: Move[]): Move[] {
-    const result = Array<Move>(9).fill(null).map(() => new Move());
-
-    for (let i = 0; i < current.length; ++i) {
-      result[i].player = current[i].player;
-    }
-
+    const result = current.map(move => move.clone());
     return result;
   }
 
