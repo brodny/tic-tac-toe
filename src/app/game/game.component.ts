@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Move } from '../move';
 
 @Component({
   selector: 'app-game',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  public history: Array<Array<string>> = [ Array(9).fill(null), ];
+  public history: Array<Array<Move>> = [ Array<Move>(9).fill(null).map(() => new Move()), ];
 
   // tslint:disable-next-line: no-inferrable-types
   public xIsNext: boolean = true;
@@ -24,15 +25,15 @@ export class GameComponent implements OnInit {
   }
 
   public handleClick(square: number): void {
-    const history: Array<Array<string>> = this.history.slice(0, this.stepNumber + 1);
-    const current: Array<string> = history[this.stepNumber];
-    const squares: Array<string> = current.slice();
+    const history: Array<Array<Move>> = this.history.slice(0, this.stepNumber + 1);
+    const current: Array<Move> = history[this.stepNumber];
+    const squares: Array<Move> = this.clone(current);
 
-    if (this.calculateWinner(squares) || squares[square]) {
+    if (this.calculateWinner(squares) || squares[square].player) {
       return;
     }
 
-    squares[square] = this.xIsNext ? 'X' : 'O';
+    squares[square].player = this.xIsNext ? 'X' : 'O';
 
     this.history = this.history.concat([squares]);
     this.xIsNext = !this.xIsNext;
@@ -48,7 +49,7 @@ export class GameComponent implements OnInit {
     this.recalculateStatus();
   }
 
-  private calculateWinner(squares: Array<string>): string {
+  private calculateWinner(squares: Array<Move>): string {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -63,8 +64,8 @@ export class GameComponent implements OnInit {
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+      if (squares[a] && squares[a].player === squares[b].player && squares[a].player === squares[c].player) {
+        return squares[a].player;
       }
     }
     return null;
@@ -82,6 +83,16 @@ export class GameComponent implements OnInit {
     }
 
     this.status = status;
+  }
+
+  private clone(current: Move[]): Move[] {
+    const result = Array<Move>(9).fill(null).map(() => new Move());
+
+    for (let i = 0; i < current.length; ++i) {
+      result[i].player = current[i].player;
+    }
+
+    return result;
   }
 
 }

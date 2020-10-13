@@ -1,5 +1,5 @@
 <ng-template #squareTemplate let-value="value">
-    <app-square value={{this.squares[value]}} (click)="this.handleClick(value)"></app-square>
+    <app-square value={{this.squares[value].player}} (click)="this.handleClick(value)"></app-square>
 </ng-template>
 
 <div>
