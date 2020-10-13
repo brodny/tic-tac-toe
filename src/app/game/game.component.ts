@@ -36,6 +36,10 @@ export class GameComponent implements OnInit {
     this.recalculateStatus();
   }
 
+  public jumpTo(move: number): void {
+    alert(`Jumping to move ${move}`);
+  }
+
   private calculateWinner(squares: Array<string>): string {
     const lines = [
       [0, 1, 2],

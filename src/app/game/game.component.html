@@ -8,6 +8,14 @@
     </div>
     <div class="game-info">
         <div>{{this.status}}</div>
-        <div>TODO</div>
+        <div>
+            <ol>
+                <li *ngFor="let history of this.history; index as index">
+                    <button (click)="this.jumpTo(index)">
+                        {{ (index ? 'Go to move #' + index : 'Go to game start') }}
+                    </button>
+                </li>
+            </ol>
+        </div>
     </div>
 </div>
