@@ -9,6 +9,9 @@ export class SquareComponent implements OnInit {
 
   @Input() public value: string;
 
+  // tslint:disable-next-line: no-inferrable-types
+  @Input() public isSquareWon: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
