@@ -37,6 +37,7 @@ export class GameComponent implements OnInit {
 
     board.lastMoveColumn = (square % 3) + 1;
     board.lastMoveRow = Math.floor(square / 3) + 1;
+    board.moveNumber = this.stepNumber + 1;
 
     this.history = history.concat([board]);
     this.xIsNext = !this.xIsNext;

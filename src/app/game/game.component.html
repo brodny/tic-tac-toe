@@ -12,14 +12,14 @@
             <button>Sort ascending</button>
             <button>Sort descending</button>
             <ol>
-                <li *ngFor="let history of this.history; index as index">
+                <li *ngFor="let history of this.history">
                     <button
-                        (click)="this.jumpTo(index)"
-                        [class.current-move]="index === this.stepNumber"
+                        (click)="this.jumpTo(history.moveNumber)"
+                        [class.current-move]="history.moveNumber === this.stepNumber"
                     >
                         {{
-                            index
-                                ? 'Go to move #' + index + ' (' + history.lastMoveColumn + ', ' + history.lastMoveRow + ')'
+                            history.moveNumber
+                                ? 'Go to move #' + history.moveNumber + ' (' + history.lastMoveColumn + ', ' + history.lastMoveRow + ')'
                                 : 'Go to game start'
                         }}
                     </button>
