@@ -53,6 +53,12 @@ export class GameComponent implements OnInit {
     this.recalculateStatus();
   }
 
+  public sortAscending(): void {
+  }
+
+  public sortDescending(): void {
+  }
+
   private calculateWinner(board: Board): string {
     const lines = [
       [0, 1, 2],
