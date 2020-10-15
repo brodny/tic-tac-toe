@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Move } from '../move';
+import { Board } from '../board';
 
 @Component({
   selector: 'app-game',
@@ -8,7 +8,7 @@ import { Move } from '../move';
 })
 export class GameComponent implements OnInit {
 
-  public history: Array<Array<Move>> = [ Array<Move>(9).fill(null).map(() => new Move()), ];
+  public history: Array<Board> = [ new Board(), ];
 
   // tslint:disable-next-line: no-inferrable-types
   public xIsNext: boolean = true;
@@ -25,17 +25,17 @@ export class GameComponent implements OnInit {
   }
 
   public handleClick(square: number): void {
-    const history: Array<Array<Move>> = this.history.slice(0, this.stepNumber + 1);
-    const current: Array<Move> = history[this.stepNumber];
-    const squares: Array<Move> = this.clone(current);
+    const history: Array<Board> = this.history.slice(0, this.stepNumber + 1);
+    const current: Board = history[this.stepNumber];
+    const board: Board = current.clone();
 
-    if (this.calculateWinner(squares) || squares[square].player) {
+    if (this.calculateWinner(board) || board.squares[square]) {
       return;
     }
 
-    squares[square].player = this.xIsNext ? 'X' : 'O';
+    board.squares[square] = this.xIsNext ? 'X' : 'O';
 
-    this.history = history.concat([squares]);
+    this.history = history.concat([board]);
     this.xIsNext = !this.xIsNext;
     this.stepNumber = history.length;
 
@@ -49,7 +49,7 @@ export class GameComponent implements OnInit {
     this.recalculateStatus();
   }
 
-  private calculateWinner(squares: Array<Move>): string {
+  private calculateWinner(board: Board): string {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -64,8 +64,8 @@ export class GameComponent implements OnInit {
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-      if (squares[a] && squares[a].player === squares[b].player && squares[a].player === squares[c].player) {
-        return squares[a].player;
+      if (board.squares[a] && board.squares[a] === board.squares[b] && board.squares[a] === board.squares[c]) {
+        return board.squares[a];
       }
     }
     return null;
@@ -83,11 +83,6 @@ export class GameComponent implements OnInit {
     }
 
     this.status = status;
-  }
-
-  private clone(current: Move[]): Move[] {
-    const result = current.map(move => move.clone());
-    return result;
   }
 
 }

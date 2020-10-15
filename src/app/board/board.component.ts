@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Move } from '../move';
+import { Board } from '../board';
 
 @Component({
   selector: 'app-board',
@@ -8,7 +8,7 @@ import { Move } from '../move';
 })
 export class BoardComponent implements OnInit {
 
-  @Input() public squares: Array<Move>;
+  @Input() public board: Board;
 
   @Output() public squareClicked: EventEmitter<number> = new EventEmitter<number>();
 
