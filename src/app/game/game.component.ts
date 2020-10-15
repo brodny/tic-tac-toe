@@ -21,6 +21,8 @@ export class GameComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   public sortingAscending: boolean = true;
 
+  public wonSquares: Array<number>;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -94,8 +96,10 @@ export class GameComponent implements OnInit {
     let status: string;
     if (winner) {
       status = `Winner: ${winner.winner}`;
+      this.wonSquares = winner.wonSquares;
     }
     else {
+      this.wonSquares = null;
       const isDraw: boolean = this.history[this.stepNumber].squares.filter(val => val === null).length === 0;
 
       if (isDraw) {

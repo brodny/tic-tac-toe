@@ -2,6 +2,7 @@
     <div class="game-board">
         <app-board
             [board]="this.history[this.stepNumber]"
+            [wonSquares]="this.wonSquares"
             (squareClicked)="this.handleClick($event)"
         >
         </app-board>

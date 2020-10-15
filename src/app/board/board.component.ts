@@ -10,6 +10,8 @@ export class BoardComponent implements OnInit {
 
   @Input() public board: Board;
 
+  @Input() public wonSquares: Array<number>;
+
   @Output() public squareClicked: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
