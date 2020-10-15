@@ -9,6 +9,8 @@
     <div class="game-info">
         <div>{{this.status}}</div>
         <div>
+            <button>Sort ascending</button>
+            <button>Sort descending</button>
             <ol>
                 <li *ngFor="let history of this.history; index as index">
                     <button
