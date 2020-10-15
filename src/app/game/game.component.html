@@ -11,7 +11,10 @@
         <div>
             <ol>
                 <li *ngFor="let history of this.history; index as index">
-                    <button (click)="this.jumpTo(index)" [class.current-move]="index === this.stepNumber">
+                    <button
+                        (click)="this.jumpTo(index)"
+                        [class.current-move]="index === this.stepNumber"
+                    >
                         {{
                             index
                                 ? 'Go to move #' + index + ' (' + history.lastMoveColumn + ', ' + history.lastMoveRow + ')'
