@@ -1,21 +1,9 @@
-<ng-template #squareTemplate let-value="value">
-    <app-square [value]="this.board.squares[value]" (click)="this.handleClick(value)"></app-square>
-</ng-template>
-
 <div>
-    <div class="board-row">
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 0 }"></ng-container>
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 1 }"></ng-container>
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 2 }"></ng-container>
+    <div *ngFor="let row of [0, 1, 2]" class="board-row">
+        <app-square
+            *ngFor="let col of [0, 1, 2]"
+            [value]="this.board.squares[row * 3 + col]"
+            (click)="this.handleClick(row * 3 + col)"
+        ></app-square>
     </div>
-    <div class="board-row">
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 3 }"></ng-container>
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 4 }"></ng-container>
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 5 }"></ng-container>
-    </div>
-    <div class="board-row">
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 6 }"></ng-container>
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 7 }"></ng-container>
-        <ng-container *ngTemplateOutlet="squareTemplate; context: { value: 8 }"></ng-container>
-    </div>
-  </div>
+</div>
