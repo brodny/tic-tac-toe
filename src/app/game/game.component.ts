@@ -64,7 +64,7 @@ export class GameComponent implements OnInit {
     this.sortingAscending = false;
   }
 
-  private calculateWinner(board: Board): string {
+  private calculateWinner(board: Board): Winner {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -80,7 +80,10 @@ export class GameComponent implements OnInit {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (board.squares[a] && board.squares[a] === board.squares[b] && board.squares[a] === board.squares[c]) {
-        return board.squares[a];
+        return {
+          winner: board.squares[a],
+          wonSquares: lines[i],
+        };
       }
     }
     return null;
@@ -90,7 +93,7 @@ export class GameComponent implements OnInit {
     const winner = this.calculateWinner(this.history[this.stepNumber]);
     let status: string;
     if (winner) {
-      status = `Winner: ${winner}`;
+      status = `Winner: ${winner.winner}`;
     }
     else {
       const isDraw: boolean = this.history[this.stepNumber].squares.filter(val => val === null).length === 0;
@@ -107,4 +110,9 @@ export class GameComponent implements OnInit {
     this.status = status;
   }
 
+}
+
+class Winner {
+  public winner: string;
+  public wonSquares: Array<number>;
 }
