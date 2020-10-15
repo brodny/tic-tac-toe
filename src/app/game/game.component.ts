@@ -35,7 +35,7 @@ export class GameComponent implements OnInit {
     if (this.calculateWinner(board) || board.squares[square]) {
       return;
     }
-    
+
     board.squares[square] = this.xIsNext ? 'X' : 'O';
 
     board.lastMoveColumn = (square % 3) + 1;
@@ -93,8 +93,15 @@ export class GameComponent implements OnInit {
       status = `Winner: ${winner}`;
     }
     else {
-      const nextPlayer: string = this.xIsNext ? 'X' : 'O';
-      status = `Next player: ${nextPlayer}`;
+      const isDraw: boolean = this.history[this.stepNumber].squares.filter(val => val === null).length === 0;
+
+      if (isDraw) {
+        status = 'Draw';
+      }
+      else {
+        const nextPlayer: string = this.xIsNext ? 'X' : 'O';
+        status = `Next player: ${nextPlayer}`;
+      }
     }
 
     this.status = status;
