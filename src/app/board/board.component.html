@@ -3,6 +3,7 @@
         <app-square
             *ngFor="let col of [0, 1, 2]"
             [value]="this.board.squares[row * 3 + col]"
+            [isSquareWon]="this.isSquareWon[row * 3 + col]"
             (click)="this.handleClick(row * 3 + col)"
         ></app-square>
     </div>

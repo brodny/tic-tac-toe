@@ -24,4 +24,17 @@ export class BoardComponent implements OnInit {
     this.squareClicked.emit(square);
   }
 
+  public get isSquareWon(): Array<boolean> {
+    const isSquareWon: Array<boolean> = Array(9).fill(false);
+
+    if (this.wonSquares) {
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < this.wonSquares.length; ++i) {
+        isSquareWon[this.wonSquares[i]] = true;
+      }
+    }
+
+    return isSquareWon;
+  }
+
 }
