@@ -12,7 +12,11 @@
             <ol>
                 <li *ngFor="let history of this.history; index as index">
                     <button (click)="this.jumpTo(index)">
-                        {{ (index ? 'Go to move #' + index : 'Go to game start') }}
+                        {{
+                            index
+                                ? 'Go to move #' + index + ' (' + history.lastMoveColumn + ', ' + history.lastMoveRow + ')'
+                                : 'Go to game start'
+                        }}
                     </button>
                 </li>
             </ol>
