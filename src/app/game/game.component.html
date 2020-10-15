@@ -12,7 +12,7 @@
             <button (click)="this.sortAscending()">Sort ascending</button>
             <button (click)="this.sortDescending()">Sort descending</button>
             <ol>
-                <li *ngFor="let history of this.history">
+                <li *ngFor="let history of (this.sortingAscending ? this.history : this.history.reverse())">
                     <button
                         (click)="this.jumpTo(history.moveNumber)"
                         [class.current-move]="history.moveNumber === this.stepNumber"

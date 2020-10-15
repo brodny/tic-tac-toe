@@ -18,6 +18,9 @@ export class GameComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   public stepNumber: number = 0;
 
+  // tslint:disable-next-line: no-inferrable-types
+  public sortingAscending: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -32,7 +35,7 @@ export class GameComponent implements OnInit {
     if (this.calculateWinner(board) || board.squares[square]) {
       return;
     }
-
+    
     board.squares[square] = this.xIsNext ? 'X' : 'O';
 
     board.lastMoveColumn = (square % 3) + 1;
@@ -54,9 +57,11 @@ export class GameComponent implements OnInit {
   }
 
   public sortAscending(): void {
+    this.sortingAscending = true;
   }
 
   public sortDescending(): void {
+    this.sortingAscending = false;
   }
 
   private calculateWinner(board: Board): string {
